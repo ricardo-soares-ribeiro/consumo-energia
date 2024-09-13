@@ -13,4 +13,13 @@ public enum Mes {
     public int getNumero() {
         return numero;
     }
+
+    public static Mes getMes(int num) {
+        for (Mes mes : Mes.values()) {
+            if (num == mes.getNumero()) {
+                return mes;
+            }
+        }
+        throw new IllegalArgumentException("Número inválido: " + num);
+    }
 }

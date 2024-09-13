@@ -5,20 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f9344b6-992f-40a8-9fca-3cbf5fad15b7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/consumo-energia/src/util/StatisticsHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/StatisticsHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consumo-energia/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_100.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_100.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_1000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_1000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_100000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_100000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_16000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_16000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_20.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_20.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_2000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_2000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_32000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_32000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_4000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_4000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_500.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_500.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_50000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_50000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/data/consumos_8000.csv" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/resources/consumos_8000.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/utils/CsvReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/CsvManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/CsvManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/constants/CsvFilesPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/constants/CsvFilesPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/constants/Mes.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/constants/Mes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/constants/SubEstacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/constants/SubEstacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/CsvManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/CsvManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/Mes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/Mes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/SubEstacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/SubEstacao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,35 +26,35 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2lsye5W9qZB5krFrZ6JbskLjRoR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Master/OneDrive/Área de Trabalho/trabalho-alest-I/consumo-energia",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "configurable.group.build"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Master/OneDrive/Área de Trabalho/trabalho-alest-I/consumo-energia&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

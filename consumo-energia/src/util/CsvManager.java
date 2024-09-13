@@ -1,9 +1,7 @@
 package util;
 
-import util.constants.CsvFilesPath;
 import util.constants.Mes;
 import util.constants.SubEstacao;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -12,12 +10,15 @@ public class CsvManager {
 
     int[][] matrizConsumo;
 
-    public CsvManager() {
+    String csvFilePath;
+
+    public CsvManager(String csvFilePath) {
         this.matrizConsumo = new int[5][12];
+        this.csvFilePath = csvFilePath;
     }
 
     public void lerArquivoCsv() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(CsvFilesPath.CONSUMO_20_PATH.getPath()));
+        Scanner scanner = new Scanner(new File(csvFilePath));
 
         scanner.nextLine();
 
@@ -29,11 +30,18 @@ public class CsvManager {
             String linha = scanner.nextLine();
             String[] valores = linha.split(",");
 
-            int mes = Mes.valueOf(valores[0].toUpperCase()).getNumero();
-            int subEstacao = SubEstacao.valueOf(valores[1].toUpperCase()).getCodigo();
-            int consumo = Integer.parseInt(valores[2]);
+            try {
+                int mes = Mes.valueOf(valores[0].toUpperCase()).getNumero();
+                int subEstacao = SubEstacao.valueOf(valores[1].toUpperCase()).getCodigo();
+                int consumo = Integer.parseInt(valores[2]);
 
-            matrizConsumo[subEstacao - 1][mes - 1] = consumo;
+                matrizConsumo[subEstacao - 1][mes - 1] = consumo;
+
+            } catch (NumberFormatException exception) {
+                System.out.println(exception + " : Não foi possível converter o valor informado para consumo");
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception + " : O valor informado para o mês ou a subestação está incorreto.");
+            }
         }
     }
 
@@ -52,5 +60,9 @@ public class CsvManager {
             }
             System.out.println();
         }
+    }
+
+    public int[][] getMatrizConsumo() {
+        return matrizConsumo;
     }
 }

@@ -12,4 +12,13 @@ public enum SubEstacao {
     public int getCodigo() {
         return codigo;
     }
+
+    public static SubEstacao getSubEstacao(int codigo) {
+        for (SubEstacao subEstacao : SubEstacao.values()) {
+            if (subEstacao.codigo == codigo) {
+                return subEstacao;
+            }
+        }
+        throw new IllegalArgumentException("Código inválido: " + codigo);
+    }
 }
