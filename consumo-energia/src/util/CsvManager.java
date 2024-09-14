@@ -23,6 +23,8 @@ public class CsvManager {
         scanner.nextLine();
 
         preencherMatriz(scanner);
+
+        scanner.close();
     }
 
     private void preencherMatriz(Scanner scanner) {
@@ -38,7 +40,7 @@ public class CsvManager {
                 matrizConsumo[subEstacao - 1][mes - 1] = consumo;
 
             } catch (NumberFormatException exception) {
-                System.out.println(exception + "Não foi possível converter o valor informado para consumo");
+                System.out.println(exception + "Não foi possível converter o valor informado para consumo.");
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception + "Valor informado para o mês ou a subestação está incorreto.");
             }

@@ -5,9 +5,9 @@ import util.constants.SubEstacao;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class StatisticsHelper {
+public class StatisticsUtil {
 
-    public static String getMenorConsumo(int[][] matrizConsumo) {
+    public String getMenorConsumo(int[][] matrizConsumo) {
 
         int menorConsumo = Integer.MAX_VALUE;
         String subEstacaoMenorConsumo = "";
@@ -25,10 +25,10 @@ public final class StatisticsHelper {
             }
         }
 
-        return "Subestação com menor consumo mensal: \n" + subEstacaoMenorConsumo + " - " + mesMenorConsumo + " (" + menorConsumo + ")";
+        return "Subestação com menor consumo mensal: " + subEstacaoMenorConsumo + " - " + mesMenorConsumo + " (" + menorConsumo + ")\n";
     }
 
-    public static String getMaiorConsumo(int[][] matrizConsumo) {
+    public String getMaiorConsumo(int[][] matrizConsumo) {
 
         int maiorConsumo = 0;
         String subEstacaoMaiorConsumo = "";
@@ -46,10 +46,10 @@ public final class StatisticsHelper {
             }
         }
 
-        return "Subestação com maior consumo mensal: \n" + subEstacaoMaiorConsumo + " - " + mesMaiorConsumo + " (" + maiorConsumo + ")";
+        return "Subestação com maior consumo mensal: " + subEstacaoMaiorConsumo + " - " + mesMaiorConsumo + " (" + maiorConsumo + ")\n";
     }
 
-    public static String getConsumoTotal(int[][] matrizConsumo) {
+    public String getConsumoTotal(int[][] matrizConsumo) {
         int totalConsumo = 0;
 
         for (int i = 0; i < matrizConsumo.length; i++) {
@@ -60,10 +60,10 @@ public final class StatisticsHelper {
             }
         }
 
-        return "Total geral de consumo: " + totalConsumo;
+        return "Total geral de consumo: " + totalConsumo + "\n";
     }
 
-    public static void getMediaDeConsumoPorSubEstacao(int[][] matrizConsumo) {
+    public void getMediaDeConsumoPorSubEstacao(int[][] matrizConsumo) {
 
         HashMap<String, String> tabela = new HashMap<>();
 
@@ -92,7 +92,7 @@ public final class StatisticsHelper {
         }
     }
 
-    public static void getConsumoTotalPorMes(int[][] matrizConsumo) {
+    public void getConsumoTotalPorMes(int[][] matrizConsumo) {
 
         HashMap<String, Integer> tabela = new HashMap<>();
 

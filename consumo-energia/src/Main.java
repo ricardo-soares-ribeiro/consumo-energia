@@ -1,35 +1,14 @@
-import util.CsvManager;
-import util.StatisticsHelper;
+import util.ReportFactory;
 import util.constants.CsvFilesPath;
-
 import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        CsvManager csvManager = new CsvManager(CsvFilesPath.CONSUMO_20_PATH.getPath());
+        ReportFactory reportFactory = new ReportFactory();
 
-        try {
-            csvManager.lerArquivoCsv();
-            csvManager.exibirMatriz();
-
-            int[][] matrizConsumo = csvManager.getMatrizConsumo();
-
-            System.out.println();
-
-            System.out.println(StatisticsHelper.getMenorConsumo(matrizConsumo));
-            System.out.println();
-            System.out.println(StatisticsHelper.getMaiorConsumo(matrizConsumo));
-            System.out.println();
-            System.out.println(StatisticsHelper.getConsumoTotal(matrizConsumo));
-
-            System.out.println();
-
-            StatisticsHelper.getMediaDeConsumoPorSubEstacao(matrizConsumo);
-            System.out.println();
-            StatisticsHelper.getConsumoTotalPorMes(matrizConsumo);
-
-        } catch (FileNotFoundException exception) {
-            System.out.println(exception + "Arquivo não encontrado.");
-        }
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_20_PATH.getPath(),
+                 ""
+        );
     }
 }
