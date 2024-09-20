@@ -63,7 +63,9 @@ public class StatisticsUtil {
         return "Total geral de consumo: " + totalConsumo + "\n";
     }
 
-    public void getMediaDeConsumoPorSubEstacao(int[][] matrizConsumo) {
+    public String getMediaDeConsumoPorSubEstacao(int[][] matrizConsumo) {
+
+        StringBuilder sb = new StringBuilder();
 
         HashMap<String, String> tabela = new HashMap<>();
 
@@ -82,17 +84,20 @@ public class StatisticsUtil {
             soma = 0;
         }
 
-        System.out.printf("%-10s", "");
-        System.out.print("Média");
-        System.out.println();
+        sb.append(String.format("%-10s", ""));
+        sb.append("Média\n");
         for (Map.Entry<String, String> m : tabela.entrySet()) {
-            System.out.printf("%-10s", m.getKey());
-            System.out.printf("%-10s", m.getValue());
-            System.out.println();
+            sb.append(String.format("%-10s", m.getKey()));
+            sb.append(String.format("%-10s", m.getValue()));
+            sb.append("\n");
         }
+
+        return sb.toString();
     }
 
-    public void getConsumoTotalPorMes(int[][] matrizConsumo) {
+    public String getConsumoTotalPorMes(int[][] matrizConsumo) {
+
+        StringBuilder sb = new StringBuilder();
 
         HashMap<String, Integer> tabela = new HashMap<>();
 
@@ -112,13 +117,15 @@ public class StatisticsUtil {
             }
         }
 
-        System.out.printf("%-10s", "Mês");
-        System.out.printf("%-10s", "Consumo Total");
-        System.out.println();
+        sb.append(String.format("%-10s", "Mês"));
+        sb.append(String.format("%-10s", "Consumo Total"));
+        sb.append("\n");
         for (Mes m : Mes.values()) {
-            System.out.printf("%-10s", m.name());
-            System.out.printf("%-10s", tabela.get(m.name()));
-            System.out.println();
+            sb.append(String.format("%-10s", m.name()));
+            sb.append(String.format("%-10s", tabela.get(m.name())));
+            sb.append("\n");
         }
+
+        return sb.toString();
     }
 }
