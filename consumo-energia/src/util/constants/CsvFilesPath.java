@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public enum CsvFilesPath {
-
     CONSUMO_20_PATH(Paths.get("consumo-energia/src/resources/consumos_20.csv").toAbsolutePath()),
     CONSUMO_100_PATH(Paths.get("consumo-energia/src/resources/consumos_100.csv").toAbsolutePath()),
     CONSUMO_500_PATH(Paths.get("consumo-energia/src/resources/consumos_500.csv").toAbsolutePath()),
