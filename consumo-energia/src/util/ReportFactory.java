@@ -1,12 +1,14 @@
 package util;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class ReportFactory {
 
-    public void gerarRelatorioPDF(String csvFilePath, String txtFilePath) {
+    public void gerarRelatorioPDF(Path csvFilePath) {
 
-        CsvManager csvManager = new CsvManager(csvFilePath);
+        CsvManager csvManager = new CsvManager(csvFilePath.toString());
         StatisticsUtil statisticsUtil = new StatisticsUtil();
 
         try {
@@ -15,7 +17,7 @@ public class ReportFactory {
 
             int[][] matrizConsumo = csvManager.getMatrizConsumo();
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(txtFilePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(resolveTxtPath(csvFilePath)));
 
             writer.write("RELATÓRIO DE CONSUMO\n\n");
 
@@ -34,12 +36,18 @@ public class ReportFactory {
 
             writer.close();
 
-            System.out.println("Relatório gerado com sucesso em: " + txtFilePath);
+            System.out.println("Relatório gerado com sucesso em: " + resolveTxtPath(csvFilePath));
 
         } catch (FileNotFoundException exception) {
             throw new RuntimeException("Arquivo .csv não encontrado: " + csvFilePath, exception);
         } catch (IOException exception) {
-            throw new RuntimeException("Mão foi possível escrever no arquivo .txt: " + txtFilePath, exception);
+            throw new RuntimeException("Mão foi possível escrever no arquivo .txt", exception);
         }
+    }
+
+    public String resolveTxtPath(Path csvPath) {
+        String csvFileName = csvPath.getFileName().toString().replace(".csv", "");
+        Path txtPath = Paths.get("consumo-energia/txt-file-generated/" + csvFileName + "_relatorio.txt").toAbsolutePath();
+        return txtPath.toString();
     }
 }

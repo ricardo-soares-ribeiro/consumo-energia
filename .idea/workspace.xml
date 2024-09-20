@@ -6,17 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5f9344b6-992f-40a8-9fca-3cbf5fad15b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/dependencies/itextpdf-5.5.13.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/CsvManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/CsvManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumo-energia/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/ReportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/ReportFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/StatisticsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/StatisticsUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/constants/CsvFilesPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/constants/CsvFilesPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/dependencies/itextpdf-5.5.13.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/CsvManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/CsvManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/ReportFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/ReportFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/StatisticsUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/StatisticsUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/CsvFilesPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/CsvFilesPath.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

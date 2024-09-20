@@ -3,19 +3,53 @@ package main;
 import util.ReportFactory;
 import util.constants.CsvFilesPath;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         ReportFactory reportFactory = new ReportFactory();
 
-        Path csvPath = Paths.get(CsvFilesPath.CONSUMO_20_PATH.getPath()).toAbsolutePath();
-        Path txtPath = Paths.get("consumo-energia/txt-file-generated/relatorio.txt").toAbsolutePath();
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_20_PATH.getPath()
+        );
 
         reportFactory.gerarRelatorioPDF(
-                csvPath.toString(),
-                txtPath.toString()
+                CsvFilesPath.CONSUMO_100_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_500_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_1000_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_2000_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_4000_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_8000_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_16000_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_32000_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_50000_PATH.getPath()
+        );
+
+        reportFactory.gerarRelatorioPDF(
+                CsvFilesPath.CONSUMO_100000_PATH.getPath()
         );
     }
 }
