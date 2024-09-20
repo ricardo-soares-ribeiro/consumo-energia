@@ -2,7 +2,7 @@ package util.constants;
 
 public enum CsvFilesPath {
 
-    CONSUMO_20_PATH(""),
+    CONSUMO_20_PATH("consumo-energia/src/resources/consumos_20.csv"),
     CONSUMO_100_PATH(""),
     CONSUMO_500_PATH(""),
     CONSUMO_1000_PATH(""),

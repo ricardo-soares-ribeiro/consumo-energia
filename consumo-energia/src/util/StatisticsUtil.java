@@ -2,8 +2,6 @@ package util;
 
 import util.constants.Mes;
 import util.constants.SubEstacao;
-import java.util.HashMap;
-import java.util.Map;
 
 public class StatisticsUtil {
 
@@ -67,7 +65,7 @@ public class StatisticsUtil {
 
         StringBuilder sb = new StringBuilder();
 
-        HashMap<String, String> tabela = new HashMap<>();
+        double[] medias = new double[SubEstacao.values().length];
 
         int soma = 0;
         double media;
@@ -79,16 +77,17 @@ public class StatisticsUtil {
             }
 
             media = (double) soma / matrizConsumo[i].length;
-            tabela.put(SubEstacao.getSubEstacao(i + 1).name(), String.format("%.2f", media));
+            medias[i] = media;
 
             soma = 0;
         }
 
         sb.append(String.format("%-10s", ""));
         sb.append("Média\n");
-        for (Map.Entry<String, String> m : tabela.entrySet()) {
-            sb.append(String.format("%-10s", m.getKey()));
-            sb.append(String.format("%-10s", m.getValue()));
+
+        for (int i = 0; i < SubEstacao.values().length; i++) {
+            sb.append(String.format("%-10s", SubEstacao.getSubEstacao(i + 1).name()));
+            sb.append(String.format("%-10s", String.format("%.2f", medias[i])));
             sb.append("\n");
         }
 
@@ -99,30 +98,21 @@ public class StatisticsUtil {
 
         StringBuilder sb = new StringBuilder();
 
-        HashMap<String, Integer> tabela = new HashMap<>();
-
-        String mes;
-        int consumo;
+        int[] consumoTotalMes = new int[Mes.values().length];
 
         for (int i = 0; i < matrizConsumo.length; i++) {
             for (int j = 0; j < matrizConsumo[i].length; j++) {
-                mes = Mes.getMes(j + 1).name();
-                consumo = matrizConsumo[i][j];
-
-                if (!tabela.containsKey(mes)) {
-                    tabela.put(mes, consumo);
-                } else {
-                    tabela.put(mes, tabela.get(mes) + consumo);
-                }
+                consumoTotalMes[j] += matrizConsumo[i][j];
             }
         }
 
         sb.append(String.format("%-10s", "Mês"));
         sb.append(String.format("%-10s", "Consumo Total"));
         sb.append("\n");
-        for (Mes m : Mes.values()) {
-            sb.append(String.format("%-10s", m.name()));
-            sb.append(String.format("%-10s", tabela.get(m.name())));
+
+        for (int j = 0; j < Mes.values().length; j++) {
+            sb.append(String.format("%-10s", Mes.getMes(j + 1).name()));
+            sb.append(String.format("%-10s", consumoTotalMes[j]));
             sb.append("\n");
         }
 

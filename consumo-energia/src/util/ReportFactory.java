@@ -1,18 +1,10 @@
 package util;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import util.constants.Mes;
-import util.constants.SubEstacao;
-
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 
 public class ReportFactory {
 
-    public void gerarRelatorioPDF(String csvFilePath, String pdfFilePath) {
+    public void gerarRelatorioPDF(String csvFilePath, String txtFilePath) {
 
         CsvManager csvManager = new CsvManager(csvFilePath);
         StatisticsUtil statisticsUtil = new StatisticsUtil();
@@ -23,70 +15,31 @@ public class ReportFactory {
 
             int[][] matrizConsumo = csvManager.getMatrizConsumo();
 
-            Document document = new Document();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(txtFilePath));
 
-            PdfWriter.getInstance(document,new FileOutputStream(pdfFilePath));
+            writer.write("RELATÓRIO DE CONSUMO\n\n");
 
-            document.open();
+            writer.write(csvManager.exibirMatriz());
 
-            Font fontTitulo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12, BaseColor.BLACK);
-            Font fontTexto = FontFactory.getFont(FontFactory.TIMES_ROMAN, 10, BaseColor.BLACK);
-            Font fontLabel = FontFactory.getFont(FontFactory.TIMES_ROMAN, 8, BaseColor.BLACK);
-            Font fontValores = FontFactory.getFont(FontFactory.TIMES_ROMAN, 6, BaseColor.BLACK);
+            writer.write("\n\nESTATÍSTICAS\n\n");
+            writer.write(statisticsUtil.getMenorConsumo(matrizConsumo));
+            writer.write(statisticsUtil.getMaiorConsumo(matrizConsumo));
+            writer.write(statisticsUtil.getConsumoTotal(matrizConsumo));
 
+            writer.write("\n\nMÉDIA DE CONSUMO POR SUBESTAÇÃO\n\n");
+            writer.write(statisticsUtil.getMediaDeConsumoPorSubEstacao(matrizConsumo));
 
-            document.add(new Paragraph(new Chunk("Relatório de Consumo \n\n", fontTitulo)));
+            writer.write("\n\nCONSUMO TOTAL POR MÊS\n\n");
+            writer.write(statisticsUtil.getConsumoTotalPorMes(matrizConsumo));
 
+            writer.close();
 
-            // Adiciona matriz de consumo ao PDF
-            PdfPTable table = new PdfPTable(Mes.values().length + 1);
-            table.setWidthPercentage(100);
-
-            float[] columnWidths = new float[Mes.values().length + 1];
-            columnWidths[0] = 2.3f;
-            for (int i = 1; i < columnWidths.length; i++) {
-                columnWidths[i] = 1.0f;
-            }
-            table.setWidths(columnWidths);
-
-            table.addCell(createCell("SUBESTAÇÃO", fontLabel));
-            for (Mes mes : Mes.values()) {
-                table.addCell(createCell(mes.name().substring(0, 3), fontLabel));
-            }
-
-            for (SubEstacao subestacao : SubEstacao.values()) {
-                table.addCell(createCell(subestacao.name(), fontLabel));
-                for (Mes mes : Mes.values()) {
-                    table.addCell(createCell(String.valueOf(csvManager.getMatrizConsumo()[subestacao.getCodigo() - 1][mes.getNumero() - 1]), fontValores));
-                }
-            }
-
-            document.add(table);
-
-
-            // Adiciona estatísticas ao PDF
-            document.add(new Paragraph(new Chunk("\nEstatísticas\n\n", fontTitulo)));
-            document.add(new Paragraph(new Chunk(statisticsUtil.getMenorConsumo(matrizConsumo), fontTexto)));
-            document.add(new Paragraph(new Chunk("\n", fontTexto)));
-            document.add(new Paragraph(new Chunk(statisticsUtil.getMaiorConsumo(matrizConsumo), fontTexto)));
-            document.add(new Paragraph(new Chunk("\n", fontTexto)));
-            document.add(new Paragraph(new Chunk(statisticsUtil.getConsumoTotal(matrizConsumo), fontTexto)));
-
-            document.close();
-
-            System.out.println("Relatório PDF gerado com sucesso em: " + pdfFilePath);
-
+            System.out.println("Relatório gerado com sucesso em: " + txtFilePath);
 
         } catch (FileNotFoundException exception) {
-            System.out.println(exception + "Arquivo não encontrado.");
-        } catch (DocumentException exception) {
-            System.out.println(exception + "Não foi possível adicionar elemento no PDF.");
+            throw new RuntimeException("Arquivo .csv não encontrado: " + csvFilePath, exception);
+        } catch (IOException exception) {
+            throw new RuntimeException("Mão foi possível escrever no arquivo .txt: " + txtFilePath, exception);
         }
-    }
-
-    private static PdfPCell createCell(String content, Font font) {
-        PdfPCell cell = new PdfPCell(new Phrase(content, font));
-        cell.setPadding(5);
-        return cell;
     }
 }

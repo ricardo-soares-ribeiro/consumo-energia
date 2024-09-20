@@ -40,28 +40,33 @@ public class CsvManager {
                 matrizConsumo[subEstacao - 1][mes - 1] = consumo;
 
             } catch (NumberFormatException exception) {
-                System.out.println(exception + "Não foi possível converter o valor informado para consumo.");
+                throw new RuntimeException("Não foi possível converter o valor informado para consumo.", exception);
             } catch (IllegalArgumentException exception) {
-                System.out.println(exception + "Valor informado para o mês ou a subestação está incorreto.");
+                throw new RuntimeException("Valor informado para o mês ou a subestação está incorreto.", exception);
             }
         }
     }
 
-    public void exibirMatriz() {
-        System.out.printf("%-10s", "");
+    public String exibirMatriz() {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(String.format("%-10s", ""));
         for (Mes mes : Mes.values()) {
-            System.out.printf("%-10s", mes.name());
+            sb.append(String.format("%-10s", mes.name()));
         }
 
-        System.out.println();
+        sb.append("\n");
 
         for (SubEstacao subestacao : SubEstacao.values()) {
-            System.out.printf("%-10s", subestacao.name());
+            sb.append(String.format("%-10s", subestacao.name()));
             for (Mes mes : Mes.values()) {
-                System.out.printf("%-10s", matrizConsumo[subestacao.getCodigo() - 1][mes.getNumero() - 1]);
+                sb.append(String.format("%-10s", matrizConsumo[subestacao.getCodigo() - 1][mes.getNumero() - 1]));
             }
-            System.out.println();
+            sb.append("\n");
         }
+
+        return sb.toString();
     }
 
     public int[][] getMatrizConsumo() {
