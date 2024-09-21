@@ -6,20 +6,17 @@ import java.nio.file.Paths;
 
 public class ReportFactory {
 
-    public void gerarRelatorioPDF(Path csvFilePath) {
+    public void gerarRelatorioTxt(Path csvFilePath, BufferedWriter writer) {
 
         CsvManager csvManager = new CsvManager(csvFilePath.toString());
         StatisticsUtil statisticsUtil = new StatisticsUtil();
 
         try {
             csvManager.lerArquivoCsv();
-            csvManager.exibirMatriz();
 
             int[][] matrizConsumo = csvManager.getMatrizConsumo();
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(resolveTxtPath(csvFilePath)));
-
-            writer.write("RELATÓRIO DE CONSUMO\n\n");
+            writer.write("CASO DE TESTE - " + csvFilePath.getFileName() + "\n\n");
 
             writer.write(csvManager.exibirMatriz());
 
@@ -34,9 +31,7 @@ public class ReportFactory {
             writer.write("\n\nCONSUMO TOTAL POR MÊS\n\n");
             writer.write(statisticsUtil.getConsumoTotalPorMes(matrizConsumo));
 
-            writer.close();
-
-            System.out.println("Relatório gerado com sucesso em: " + resolveTxtPath(csvFilePath));
+            writer.write("\n\n--------------------------------------------------------------------------------\n\n\n");
 
         } catch (FileNotFoundException exception) {
             throw new RuntimeException("Arquivo .csv não encontrado: " + csvFilePath, exception);
@@ -45,9 +40,8 @@ public class ReportFactory {
         }
     }
 
-    public String resolveTxtPath(Path csvPath) {
-        String csvFileName = csvPath.getFileName().toString().replace(".csv", "");
-        Path txtPath = Paths.get("consumo-energia/txt-file-generated/" + csvFileName + "_relatorio.txt").toAbsolutePath();
+    public String resolveTxtPath() {
+        Path txtPath = Paths.get("consumo-energia/resultado/" + "resultados.txt").toAbsolutePath();
         return txtPath.toString();
     }
 }

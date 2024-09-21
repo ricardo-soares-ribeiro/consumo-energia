@@ -1,0 +1,561 @@
+COMO O PROGRAMA FOI IMPLEMENTADO: 
+
+O programa foi projetado para gerar um relatório a partir de arquivos CSV contendo dados de consumo de energia. 
+Ele percorre uma lista de arquivos CSV, lê seus dados, preenche uma matriz de consumo, e calcula as informações estatísticas requisitadas. 
+Os resultados são escritos em um arquivo de texto que contém a matriz de consumo, estatísticas como menor e maior consumo, 
+total de consumo, média por subestação e consumo total por mês.
+
+O código pode ser dividido em três partes principais: 
+
+1. Leitura dos dados: A classe CsvManager é responsável por ler os arquivos CSV, preencher a matriz de consumo e exibir os dados formatados
+2. Cálculo de estatísticas: A classe StatisticsUtil é utilizada para processar a matriz de consumo e gerar relatórios de estatísticas
+3. Geração do relatório: A classe ReportFactory centraliza o processo, combinando a leitura de CSVs, geração de estatísticas e a escrita dos 
+resultados no arquivo resultados.txt
+
+
+COMPLEXIDADE BIG O DE CADA MÉTODO: 
+
+1. CsvManager.lerArquivoCsv(): O(n)
+2. CsvManager.preencherMatriz(): O(n)
+3. CsvManager.exibirMatriz(): O(1)
+4. StatisticsUtil.getMenorConsumo(): O(1)
+5. StatisticsUtil.getMaiorConsumo(): O(1)
+6. StatisticsUtil.getConsumoTotal(): O(1)
+7. StatisticsUtil.getMediaDeConsumoPorSubEstacao(): O(1)
+8. StatisticsUtil.getConsumoTotalPorMes(): O(1)
+9. ReportFactory.gerarRelatorioTxt(): O(n)
+
+Considerando que n = número de linhas no arquivo CSV, temos que: 
+
+Os métodos (1) e (2) são O(n) pois o número de repetições depende diretamente da quantidade de linhas no arquivo CSV.
+
+O método (3) é O(1) pois tanto o número de subestações como o número de meses são fixos e, portanto, não depende da quantidade de linhas no arquivo CSV.
+
+Todos os métodos da classe StatisticsUtil são O(1) pelo mesmo motivo, dependem apenas da quantidade fixa de meses e subestações.
+
+O método (9) é O(n) devido à chamada interna do método CsvManager.lerArquivoCsv(), o qual também é O(n). Como os demais métodos chamados internamente são 
+todos O(1) da classe StatisticsUtil, a complexidade O(n) se sobrepõe às demais.
+
+
+--------------------------------------------------------------------------------
+
+
+EVIDÊNCIAS DOS CASOS DE TESTE: 
+
+CASO DE TESTE - consumos_20.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    0         1440      0         0         70        0         0         0         0         0         365       0         
+HORIZONTE 0         0         947       0         291       0         0         63        0         0         0         0         
+LITORAL   0         0         0         826       0         0         0         0         0         216       0         0         
+PROGRESSO 0         0         1347      0         0         0         0         696       0         0         0         0         
+PLANALTO  0         0         0         0         141       1413      437       614       0         0         1892      0         
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: HORIZONTE - AGOSTO (63)
+Subestação com maior consumo mensal: PLANALTO - NOVEMBRO (1892)
+Total geral de consumo: 10758
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    156,25    
+HORIZONTE 108,42    
+LITORAL   86,83     
+PROGRESSO 170,25    
+PLANALTO  374,75    
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   0         
+FEVEREIRO 1440      
+MARCO     2294      
+ABRIL     826       
+MAIO      502       
+JUNHO     1413      
+JULHO     437       
+AGOSTO    1373      
+SETEMBRO  0         
+OUTUBRO   216       
+NOVEMBRO  2257      
+DEZEMBRO  0         
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_100.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    1837      1725      312       58        1910      930       1172      103       1746      1713      193       636       
+HORIZONTE 801       395       452       0         201       51        1221      0         0         1064      1757      677       
+LITORAL   1493      453       0         1783      252       0         1488      0         1698      1274      658       1110      
+PROGRESSO 0         1645      813       1844      1004      303       1419      172       600       1193      0         236       
+PLANALTO  0         1233      0         1066      1204      816       1422      257       709       387       0         1371      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: HORIZONTE - JUNHO (51)
+Subestação com maior consumo mensal: AURORA - MAIO (1910)
+Total geral de consumo: 46857
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    1027,92   
+HORIZONTE 551,58    
+LITORAL   850,75    
+PROGRESSO 769,08    
+PLANALTO  705,42    
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   4131      
+FEVEREIRO 5451      
+MARCO     1577      
+ABRIL     4751      
+MAIO      4571      
+JUNHO     2100      
+JULHO     6722      
+AGOSTO    532       
+SETEMBRO  4753      
+OUTUBRO   5631      
+NOVEMBRO  2608      
+DEZEMBRO  4030      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_500.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    76        491       800       683       1317      200       1621      435       78        1300      1703      1221      
+HORIZONTE 793       83        1812      1069      856       751       725       1365      1353      1540      217       131       
+LITORAL   118       1090      868       1989      1580      672       1351      807       1451      1383      964       955       
+PROGRESSO 414       104       1596      989       455       1564      214       870       1092      1778      1274      236       
+PLANALTO  742       205       1444      1985      504       780       1385      373       1922      1852      166       1007      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: AURORA - JANEIRO (76)
+Subestação com maior consumo mensal: LITORAL - ABRIL (1989)
+Total geral de consumo: 56799
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    827,08    
+HORIZONTE 891,25    
+LITORAL   1102,33   
+PROGRESSO 882,17    
+PLANALTO  1030,42   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   2143      
+FEVEREIRO 1973      
+MARCO     6520      
+ABRIL     6715      
+MAIO      4712      
+JUNHO     3967      
+JULHO     5296      
+AGOSTO    3850      
+SETEMBRO  5896      
+OUTUBRO   7853      
+NOVEMBRO  4324      
+DEZEMBRO  3550      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_1000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    966       1069      747       1599      310       753       1333      971       886       232       1387      1703      
+HORIZONTE 1139      1219      450       1988      276       405       647       1777      98        124       1564      1825      
+LITORAL   651       596       812       585       1880      806       127       1935      1950      1499      630       1944      
+PROGRESSO 303       99        759       1473      1988      1655      1675      789       247       1922      454       1898      
+PLANALTO  643       1510      1646      1844      1147      1743      1376      1698      187       1120      1701      162       
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: HORIZONTE - SETEMBRO (98)
+Subestação com maior consumo mensal: HORIZONTE - ABRIL (1988)
+Total geral de consumo: 64922
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    996,33    
+HORIZONTE 959,33    
+LITORAL   1117,92   
+PROGRESSO 1105,17   
+PLANALTO  1231,42   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   3702      
+FEVEREIRO 4493      
+MARCO     4414      
+ABRIL     7489      
+MAIO      5601      
+JUNHO     5362      
+JULHO     5158      
+AGOSTO    7170      
+SETEMBRO  3368      
+OUTUBRO   4897      
+NOVEMBRO  5736      
+DEZEMBRO  7532      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_2000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    775       933       208       620       1390      1266      544       1577      808       657       1607      1275      
+HORIZONTE 1963      1389      669       1098      907       1329      274       1659      337       1321      1343      330       
+LITORAL   1285      1474      1310      300       847       543       1066      707       174       763       1937      1387      
+PROGRESSO 496       812       1567      632       782       1306      767       1466      1824      1142      1120      1856      
+PLANALTO  673       858       1156      162       1563      1864      803       1985      973       220       931       1800      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: PLANALTO - ABRIL (162)
+Subestação com maior consumo mensal: PLANALTO - AGOSTO (1985)
+Total geral de consumo: 62830
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    971,67    
+HORIZONTE 1051,58   
+LITORAL   982,75    
+PROGRESSO 1147,50   
+PLANALTO  1082,33   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   5192      
+FEVEREIRO 5466      
+MARCO     4910      
+ABRIL     2812      
+MAIO      5489      
+JUNHO     6308      
+JULHO     3454      
+AGOSTO    7394      
+SETEMBRO  4116      
+OUTUBRO   4103      
+NOVEMBRO  6938      
+DEZEMBRO  6648      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_4000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    610       1928      1575      398       1165      1111      672       1694      980       579       405       244       
+HORIZONTE 513       1957      1443      551       1015      951       1554      284       1740      1124      587       690       
+LITORAL   1960      1606      1959      951       758       1482      653       806       488       1792      1961      465       
+PROGRESSO 1140      1537      762       284       580       445       1468      1424      1032      1753      931       494       
+PLANALTO  1544      1829      78        176       517       1180      1294      352       462       1628      104       1069      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: PLANALTO - MARCO (78)
+Subestação com maior consumo mensal: LITORAL - NOVEMBRO (1961)
+Total geral de consumo: 60734
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    946,75    
+HORIZONTE 1034,08   
+LITORAL   1240,08   
+PROGRESSO 987,50    
+PLANALTO  852,75    
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   5767      
+FEVEREIRO 8857      
+MARCO     5817      
+ABRIL     2360      
+MAIO      4035      
+JUNHO     5169      
+JULHO     5641      
+AGOSTO    4560      
+SETEMBRO  4702      
+OUTUBRO   6876      
+NOVEMBRO  3988      
+DEZEMBRO  2962      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_8000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    1198      1522      1110      1731      1683      901       1249      1362      1573      1292      1329      1749      
+HORIZONTE 441       941       1403      1704      1906      424       1806      843       1090      1836      1555      1037      
+LITORAL   1449      1459      606       53        1296      1311      288       1943      73        515       888       1899      
+PROGRESSO 579       1972      1134      1474      1741      405       919       1796      740       1326      1444      1794      
+PLANALTO  103       973       695       1999      1650      721       1123      1366      1758      1429      725       1213      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: LITORAL - ABRIL (53)
+Subestação com maior consumo mensal: PLANALTO - ABRIL (1999)
+Total geral de consumo: 72544
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    1391,58   
+HORIZONTE 1248,83   
+LITORAL   981,67    
+PROGRESSO 1277,00   
+PLANALTO  1146,25   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   3770      
+FEVEREIRO 6867      
+MARCO     4948      
+ABRIL     6961      
+MAIO      8276      
+JUNHO     3762      
+JULHO     5385      
+AGOSTO    7310      
+SETEMBRO  5234      
+OUTUBRO   6398      
+NOVEMBRO  5941      
+DEZEMBRO  7692      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_16000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    234       1815      1781      1704      854       233       1452      511       96        997       1306      62        
+HORIZONTE 279       880       1528      1305      1459      55        629       1576      303       1973      1970      684       
+LITORAL   890       1127      1043      931       277       914       283       605       677       303       1818      1361      
+PROGRESSO 872       1914      1686      1830      1054      1480      1329      1266      1234      1295      609       588       
+PLANALTO  1466      1583      1014      901       1907      106       1771      1064      1341      1581      1369      1666      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: HORIZONTE - JUNHO (55)
+Subestação com maior consumo mensal: HORIZONTE - OUTUBRO (1973)
+Total geral de consumo: 64841
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    920,42    
+HORIZONTE 1053,42   
+LITORAL   852,42    
+PROGRESSO 1263,08   
+PLANALTO  1314,08   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   3741      
+FEVEREIRO 7319      
+MARCO     7052      
+ABRIL     6671      
+MAIO      5551      
+JUNHO     2788      
+JULHO     5464      
+AGOSTO    5022      
+SETEMBRO  3651      
+OUTUBRO   6149      
+NOVEMBRO  7072      
+DEZEMBRO  4361      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_32000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    1470      1589      1262      1415      534       1295      597       382       860       1640      1303      446       
+HORIZONTE 306       1298      865       242       922       287       1250      1826      1278      893       1969      1033      
+LITORAL   106       668       569       1228      1617      1197      1531      1587      822       207       1190      914       
+PROGRESSO 1902      1133      1505      444       959       959       1590      470       176       548       674       582       
+PLANALTO  167       209       611       152       1476      1876      1435      1781      1475      1897      402       1340      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: LITORAL - JANEIRO (106)
+Subestação com maior consumo mensal: HORIZONTE - NOVEMBRO (1969)
+Total geral de consumo: 60361
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    1066,08   
+HORIZONTE 1014,08   
+LITORAL   969,67    
+PROGRESSO 911,83    
+PLANALTO  1068,42   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   3951      
+FEVEREIRO 4897      
+MARCO     4812      
+ABRIL     3481      
+MAIO      5508      
+JUNHO     5614      
+JULHO     6403      
+AGOSTO    6046      
+SETEMBRO  4611      
+OUTUBRO   5185      
+NOVEMBRO  5538      
+DEZEMBRO  4315      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_50000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    106       1757      1890      1218      535       470       1395      776       609       1536      1609      215       
+HORIZONTE 1666      1998      426       1708      1432      1489      135       633       1793      786       113       236       
+LITORAL   1183      265       1906      1234      1286      677       1251      759       985       268       1088      271       
+PROGRESSO 1945      215       822       147       1415      110       1596      59        1829      201       1232      454       
+PLANALTO  1662      483       1917      1585      1657      1819      1056      544       1893      380       456       388       
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: PROGRESSO - AGOSTO (59)
+Subestação com maior consumo mensal: HORIZONTE - FEVEREIRO (1998)
+Total geral de consumo: 59569
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    1009,67   
+HORIZONTE 1034,58   
+LITORAL   931,08    
+PROGRESSO 835,42    
+PLANALTO  1153,33   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   6562      
+FEVEREIRO 4718      
+MARCO     6961      
+ABRIL     5892      
+MAIO      6325      
+JUNHO     4565      
+JULHO     5433      
+AGOSTO    2771      
+SETEMBRO  7109      
+OUTUBRO   3171      
+NOVEMBRO  4498      
+DEZEMBRO  1564      
+
+
+--------------------------------------------------------------------------------
+
+
+CASO DE TESTE - consumos_100000.csv
+
+          JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
+AURORA    114       486       1993      654       1552      472       1459      1844      1994      226       1083      325       
+HORIZONTE 1743      60        1758      482       856       610       720       383       319       1915      1981      246       
+LITORAL   337       1882      564       1537      104       1404      1909      1702      1174      391       1037      703       
+PROGRESSO 183       1968      1251      1236      161       1300      846       1514      721       1552      1004      1275      
+PLANALTO  1383      1883      1729      1922      1168      882       79        373       1742      1756      311       1286      
+
+
+ESTATÍSTICAS
+
+Subestação com menor consumo mensal: HORIZONTE - FEVEREIRO (60)
+Subestação com maior consumo mensal: AURORA - SETEMBRO (1994)
+Total geral de consumo: 63544
+
+
+MÉDIA DE CONSUMO POR SUBESTAÇÃO
+
+          Média
+AURORA    1016,83   
+HORIZONTE 922,75    
+LITORAL   1062,00   
+PROGRESSO 1084,25   
+PLANALTO  1209,50   
+
+
+CONSUMO TOTAL POR MÊS
+
+Mês       Consumo Total
+JANEIRO   3760      
+FEVEREIRO 6279      
+MARCO     7295      
+ABRIL     5831      
+MAIO      3841      
+JUNHO     4668      
+JULHO     5013      
+AGOSTO    5816      
+SETEMBRO  5950      
+OUTUBRO   5840      
+NOVEMBRO  5416      
+DEZEMBRO  3835      
+
+
+--------------------------------------------------------------------------------
+
+
