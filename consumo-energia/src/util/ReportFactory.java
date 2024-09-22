@@ -16,7 +16,9 @@ public class ReportFactory {
 
             int[][] matrizConsumo = csvManager.getMatrizConsumo();
 
-            writer.write("CASO DE TESTE - " + csvFilePath.getFileName() + "\n\n");
+            writer.write("CASO DE TESTE - " + csvFilePath.getFileName() + "\n\n\n");
+
+            writer.write("MATRIZ DE CONSUMO\n\n");
 
             writer.write(csvManager.exibirMatriz());
 
@@ -31,7 +33,7 @@ public class ReportFactory {
             writer.write("\n\nCONSUMO TOTAL POR MÊS\n\n");
             writer.write(statisticsUtil.getConsumoTotalPorMes(matrizConsumo));
 
-            writer.write("\n\n--------------------------------------------------------------------------------\n\n\n");
+            writer.write("\n\n--------------------------------------------------------------------------------\n\n");
 
         } catch (FileNotFoundException exception) {
             throw new RuntimeException("Arquivo .csv não encontrado: " + csvFilePath, exception);

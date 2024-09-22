@@ -8,12 +8,14 @@ total de consumo, média por subestação e consumo total por mês.
 O código pode ser dividido em três partes principais: 
 
 1. Leitura dos dados: A classe CsvManager é responsável por ler os arquivos CSV, preencher a matriz de consumo e exibir os dados formatados
+
 2. Cálculo de estatísticas: A classe StatisticsUtil é utilizada para processar a matriz de consumo e gerar relatórios de estatísticas
+
 3. Geração do relatório: A classe ReportFactory centraliza o processo, combinando a leitura de CSVs, geração de estatísticas e a escrita dos 
 resultados no arquivo resultados.txt
 
 
-COMPLEXIDADE BIG O DE CADA MÉTODO: 
+COMPLEXIDADE DE CADA MÉTODO: (NOTAÇÃO BIG O)
 
 1. CsvManager.lerArquivoCsv(): O(n)
 2. CsvManager.preencherMatriz(): O(n)
@@ -27,22 +29,25 @@ COMPLEXIDADE BIG O DE CADA MÉTODO:
 
 Considerando que n = número de linhas no arquivo CSV, temos que: 
 
-Os métodos (1) e (2) são O(n) pois o número de repetições depende diretamente da quantidade de linhas no arquivo CSV.
+-> Os métodos (1) e (2) são O(n) pois o número de repetições depende diretamente da quantidade de linhas do arquivo CSV.
 
-O método (3) é O(1) pois tanto o número de subestações como o número de meses são fixos e, portanto, não depende da quantidade de linhas no arquivo CSV.
+-> O método (3) é O(1) pois tanto o número de subestações como o número de meses são fixos e, portanto, não depende da quantidade de linhas do arquivo CSV.
 
-Todos os métodos da classe StatisticsUtil são O(1) pelo mesmo motivo, dependem apenas da quantidade fixa de meses e subestações.
+-> Todos os métodos da classe StatisticsUtil são O(1) pelo mesmo motivo, dependem apenas da quantidade fixa de meses e subestações.
 
-O método (9) é O(n) devido à chamada interna do método CsvManager.lerArquivoCsv(), o qual também é O(n). Como os demais métodos chamados internamente são 
+-> O método (9) é O(n) devido à chamada interna do método CsvManager.lerArquivoCsv(), o qual também é O(n). Como os demais métodos chamados internamente são 
 todos O(1) da classe StatisticsUtil, a complexidade O(n) se sobrepõe às demais.
 
 
 --------------------------------------------------------------------------------
 
-
 EVIDÊNCIAS DOS CASOS DE TESTE: 
 
+
 CASO DE TESTE - consumos_20.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    0         1440      0         0         70        0         0         0         0         0         365       0         
@@ -88,8 +93,10 @@ DEZEMBRO  0
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_100.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    1837      1725      312       58        1910      930       1172      103       1746      1713      193       636       
@@ -135,8 +142,10 @@ DEZEMBRO  4030
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_500.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    76        491       800       683       1317      200       1621      435       78        1300      1703      1221      
@@ -182,8 +191,10 @@ DEZEMBRO  3550
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_1000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    966       1069      747       1599      310       753       1333      971       886       232       1387      1703      
@@ -229,8 +240,10 @@ DEZEMBRO  7532
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_2000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    775       933       208       620       1390      1266      544       1577      808       657       1607      1275      
@@ -276,8 +289,10 @@ DEZEMBRO  6648
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_4000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    610       1928      1575      398       1165      1111      672       1694      980       579       405       244       
@@ -323,8 +338,10 @@ DEZEMBRO  2962
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_8000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    1198      1522      1110      1731      1683      901       1249      1362      1573      1292      1329      1749      
@@ -370,8 +387,10 @@ DEZEMBRO  7692
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_16000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    234       1815      1781      1704      854       233       1452      511       96        997       1306      62        
@@ -417,8 +436,10 @@ DEZEMBRO  4361
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_32000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    1470      1589      1262      1415      534       1295      597       382       860       1640      1303      446       
@@ -464,8 +485,10 @@ DEZEMBRO  4315
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_50000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    106       1757      1890      1218      535       470       1395      776       609       1536      1609      215       
@@ -511,8 +534,10 @@ DEZEMBRO  1564
 
 --------------------------------------------------------------------------------
 
-
 CASO DE TESTE - consumos_100000.csv
+
+
+MATRIZ DE CONSUMO
 
           JANEIRO   FEVEREIRO MARCO     ABRIL     MAIO      JUNHO     JULHO     AGOSTO    SETEMBRO  OUTUBRO   NOVEMBRO  DEZEMBRO  
 AURORA    114       486       1993      654       1552      472       1459      1844      1994      226       1083      325       
@@ -557,5 +582,4 @@ DEZEMBRO  3835
 
 
 --------------------------------------------------------------------------------
-
 

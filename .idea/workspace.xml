@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5f9344b6-992f-40a8-9fca-3cbf5fad15b7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/consumo-energia/resultado/resultados.txt" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/resultado/resultados.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consumo-energia/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/consumo-energia/src/util/ReportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/consumo-energia/src/util/ReportFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/CsvFilesPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/consumo-energia/util/constants/CsvFilesPath.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
